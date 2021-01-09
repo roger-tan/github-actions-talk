@@ -1,0 +1,8 @@
+name: hello-world—workflow
+on: [push]
+jobs:
+  show-hello-world:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "Hello World"
