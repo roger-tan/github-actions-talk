@@ -9,10 +9,19 @@ on:
 jobs:
   build_and_test:
     runs-on: macos-latest
-
+    strategy:
+      matrix:
+        include:
+          - xcode: 11.7
+            ios: 13.7
+          - xcode: 12.2
+            ios: 14.2
+    
     steps:
       - uses: actions/checkout@v2
+      - name: Select Xcode ${{ matrix.xcode }}
+        run: sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
       - name: Build for testing
-        run: xcodebuild build-for-testing -scheme GitHub-Actions-Demo -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.2'
+        run: xcodebuild build-for-testing -scheme GitHub-Actions-Demo -destination 'platform=iOS Simulator,name=iPhone 11,OS=${{ matrix.ios }}'
       - name: Tests
-        run: xcodebuild test-without-building -scheme GitHub-Actions-Demo  -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.2'
+        run: xcodebuild test-without-building -scheme GitHub-Actions-Demo  -destination 'platform=iOS Simulator,name=iPhone 11,OS=${{ matrix.ios }}'
