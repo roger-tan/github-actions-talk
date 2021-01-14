@@ -1,0 +1,18 @@
+name: Super Init Demo
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build_and_test:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build for testing
+        run: xcodebuild build-for-testing -scheme GitHub-Actions-Demo -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.2'
+      - name: Tests
+        run: xcodebuild test-without-building -scheme GitHub-Actions-Demo  -destination 'platform=iOS Simulator,name=iPhone 11,OS=14.2'
