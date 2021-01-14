@@ -25,3 +25,14 @@ jobs:
         run: xcodebuild build-for-testing -scheme GitHub-Actions-Demo -destination 'platform=iOS Simulator,name=iPhone 11,OS=${{ matrix.ios }}'
       - name: Tests
         run: xcodebuild test-without-building -scheme GitHub-Actions-Demo  -destination 'platform=iOS Simulator,name=iPhone 11,OS=${{ matrix.ios }}'
+  deploy:
+    runs-on: self-hosted-m1
+    needs: [build_and_test]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Archive
+        run: xcodebuild -scheme GitHub-Actions-Demo clean archive -configuration release -sdk iphoneos -archivePath GitHub-Actions-Demo.xcarchive
+      - name: Sign and export
+        run: xcodebuild -exportArchive -archivePath  GitHub-Actions-Demo.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath  build
+      - name: Deploy to AppCenter
+        run: appcenter distribute release -f build/GitHub-Actions-Demo.ipa -g Collaborators --app roger.tan-kinandcarta.com/GitHub-Actions-Demo --token ${{ secrets.APPCENTER_ACCESS_TOKEN }}
