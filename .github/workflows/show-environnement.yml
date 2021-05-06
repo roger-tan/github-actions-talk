@@ -7,8 +7,8 @@ jobs:
       ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
     steps:
       - name: Show production message
-        if: ${{ $ENVIRONMENT == 'Production' }}
+        if: ${{ env.ENVIRONMENT == 'Production' }}
         run: echo "I am running on Production"
       - name: Show Staging message
-        if: ${{ $ENVIRONMENT == 'Staging' }}
+        if: ${{ env.ENVIRONMENT == 'Staging' }}
         run: echo "I am running on Staging"
