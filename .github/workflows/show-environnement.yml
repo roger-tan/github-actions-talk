@@ -11,6 +11,16 @@ jobs:
           ENVIRONMENT: ${{secrets.ENVIRONMENT}}
         run: |
             ./.github/scripts/environment-demo.sh $ENVIRONMENT
+  show-environement-staging:
+    environment: Staging
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - shell: bash
+        env:
+          ENVIRONMENT: ${{secrets.ENVIRONMENT}}
+        run: |
+            ./.github/scripts/environment-demo.sh $ENVIRONMENT            
 #       - name: Show production message
 #         if: ${{ env.ENVIRONMENT == "Production" }}
 #         run: echo "I am running on Production"
