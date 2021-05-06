@@ -1,0 +1,12 @@
+name: show-environement
+on: [push]
+jobs:
+  show-hello-world:
+    runs-on: macos-latest
+    steps:
+      - name: Show production message
+        if: ${{ env.ENVIRONMENT == "Production" }}
+        run: echo "I am running on production"
+      - name: Show Staging message
+        if: ${{ env.ENVIRONMENT == "Staging" }}
+        run: echo "I am running on Staging"
