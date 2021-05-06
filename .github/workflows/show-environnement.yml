@@ -6,6 +6,7 @@ jobs:
     env:
       ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
     steps:
+      - uses: actions/checkout@v2
       - run: "./.github/scripts/environment-demo.sh"
 #       - name: Show production message
 #         if: ${{ env.ENVIRONMENT == "Production" }}
