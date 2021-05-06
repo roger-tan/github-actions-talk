@@ -1,7 +1,8 @@
 name: show-environement
 on: [push]
 jobs:
-  show-environement:
+  show-environement-production:
+    environment: Production
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
