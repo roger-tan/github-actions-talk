@@ -3,11 +3,12 @@ on: [push]
 jobs:
   show-environement:
     runs-on: macos-latest
-    env:
-      ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
     steps:
       - uses: actions/checkout@v2
-      - run: "./.github/scripts/environment-demo.sh"
+      - name: Run script
+        env:
+          ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+        run: "./.github/scripts/environment-demo.sh"
 #       - name: Show production message
 #         if: ${{ env.ENVIRONMENT == "Production" }}
 #         run: echo "I am running on Production"
