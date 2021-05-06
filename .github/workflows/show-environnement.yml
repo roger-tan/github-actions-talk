@@ -3,10 +3,12 @@ on: [push]
 jobs:
   show-environement:
     runs-on: macos-latest
+    env:
+      ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
     steps:
       - name: Show production message
-        if: ${{ secrets.ENVIRONMENT == 'Production' }}
+        if: ${{ env.ENVIRONMENT == 'Production' }}
         run: echo "I am running on Production"
       - name: Show Staging message
-        if: ${{secretsenv.ENVIRONMENT == 'Staging' }}
+        if: ${{ env.ENVIRONMENT == 'Staging' }}
         run: echo "I am running on Staging"
