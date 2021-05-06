@@ -1,7 +1,7 @@
 name: show-environement
 on: [push]
 jobs:
-  show-hello-world:
+  show-environement:
     runs-on: macos-latest
     steps:
       - name: Show production message
