@@ -6,7 +6,7 @@ jobs:
     env:
       ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
     steps:
-      - run: ./environment-demo.sh
+      - run: "${GITHUB_WORKSPACE}/environment-demo.sh"
 #       - name: Show production message
 #         if: ${{ env.ENVIRONMENT == "Production" }}
 #         run: echo "I am running on Production"
