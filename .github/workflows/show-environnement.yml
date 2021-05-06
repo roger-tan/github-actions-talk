@@ -5,10 +5,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Run script
+      - shell: bash
         env:
           ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
-        run: ./.github/scripts/environment-demo.sh "$ENVIRONMENT"
+        run: |
+            ./.github/scripts/environment-demo.sh "$ENVIRONMENT"
 #       - name: Show production message
 #         if: ${{ env.ENVIRONMENT == "Production" }}
 #         run: echo "I am running on Production"
