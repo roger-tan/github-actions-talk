@@ -6,9 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run script
-        env:
-          ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
-        run: "./.github/scripts/environment-demo.sh"
+        # env:
+        #   ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+        run: "./.github/scripts/environment-demo.sh" ${{ secrets.ENVIRONMENT }}
 #       - name: Show production message
 #         if: ${{ env.ENVIRONMENT == "Production" }}
 #         run: echo "I am running on Production"

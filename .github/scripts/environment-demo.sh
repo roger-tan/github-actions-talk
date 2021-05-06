@@ -1,8 +1,8 @@
 #!/bin/bash
-if [ "$ENVIRONMENT" == "Production" ]
+if [ $1 == "Production" ]
 then
     echo "I am running on Production environment"
-elif [ "$ENVIRONMENT" == "Staging" ]
+elif [ $1 == "Staging" ]
 then
     echo "I am running on Staging environment"
 else
